@@ -8,13 +8,21 @@
 .card {
   display: flex;
   flex-direction: column;
-  margin : 15px;
-  padding : 20px;
-  background-color:lightgray;
+  margin : 10px;
+  padding : 32px;
+  background-color:azure;
   max-width: 300px;
   border-radius: 3%;
   border: 1px solid gray;
 }
+h1{ font-size: 30px;}
+
+.l {
+  margin-bottom: 20px;
+  border: 1px solid grey
+  
+}
+
 
 img {
 align-self: center;

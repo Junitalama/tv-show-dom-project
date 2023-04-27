@@ -14,8 +14,12 @@ episodeList.forEach(episode => {
   const episodeName =document.createElement("h1");
   episodeName.innerText = episode.name;
 
-  const title = document.createElement("h3");
+  const title = document.createElement("h4");
   title.innerText = `S0${episode.season}E0${episode.number}`;
+  const lineEle = document.createElement("div");
+  lineEle.className = "l";
+  title.appendChild(lineEle);
+  
 
   const image = document.createElement("img");
   image.src = episode.image["medium"];
@@ -23,11 +27,14 @@ episodeList.forEach(episode => {
   const episodeSummary = document.createElement("p");
   episodeSummary.innerHTML = episode.summary;
 
+
   divEle.append(
     episodeName,
     title,
     image,
-    episodeSummary
+    episodeSummary,
+    
+    
 );
   rootElem.append(divEle)
 });
