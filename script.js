@@ -1,5 +1,6 @@
 const allEpisodes = getAllEpisodes();
 function setup() {
+  const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
 }
 
@@ -8,7 +9,7 @@ function setup() {
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
  // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
-  episodeList.forEach(episode => {
+  for(let episode of episodeList) {
   let divEle = document.createElement("div");
   divEle.className = "card";
 
@@ -37,7 +38,7 @@ function makePageForEpisodes(episodeList) {
     
 );
   rootElem.append(divEle)
-});
+};
 }
 window.onload = setup;
 //level 200
@@ -49,8 +50,8 @@ function searchText(){
   const searchInput = document.querySelector("#search").value.toLowerCase();
   const  filteredEpisodes = allEpisodes.filter(episode => {
       if (episode.name.toLowerCase().includes(searchInput) || episode.summary.toLowerCase().includes(searchInput)){
-       // return episode
-        console.log("episode")
+       return episode;
+        
       }
   })
   
@@ -58,7 +59,7 @@ function searchText(){
   
   allEpisodes.innerHTML = "";
   document.querySelector("#quantity").innerText = filteredEpisodes.length;
-  filteredEpisodes.forEach(episode => makePageForEpisodes(episodeList));
+  filteredEpisodes.forEach(episode => makePageForEpisodes(episode));
 }
 
 //level 300
