@@ -14,13 +14,10 @@ function makePageForEpisodes(episodeList) {
   divEle.className = "card";
 
   const episodeName =document.createElement("h1");
-  episodeName.innerText = episode.name;
-
-  const title = document.createElement("h4");
-  title.innerText = `S${(String(episode.season).padStart(2,'0'))}E${String(episode.number).padStart(2,'0')}`;
+  episodeName.innerText = `${episode.name}-S${(String(episode.season).padStart(2,'0'))}E${String(episode.number).padStart(2,'0')}`;
   const lineEle = document.createElement("div");
   lineEle.className = "l";
-  title.appendChild(lineEle);
+  
 
   const image = document.createElement("img");
   image.src = episode.image["medium"];
@@ -31,7 +28,7 @@ function makePageForEpisodes(episodeList) {
 
   divEle.append(
     episodeName,
-    title,
+    lineEle,
     image,
     episodeSummary,
     
@@ -46,7 +43,6 @@ window.onload = setup;
  document.querySelector("#search").addEventListener("input", searchText);
 
 function searchText(){
-  
   const searchInput = document.querySelector("#search").value.toLowerCase();
   const  filteredEpisodes = allEpisodes.filter(episode => {
       if (episode.name.toLowerCase().includes(searchInput) || episode.summary.toLowerCase().includes(searchInput)){
@@ -66,7 +62,7 @@ function searchText(){
 
  selectEle = document.querySelector("#selector");
 optionEle = document.createElement("option");
- optionEle.innerText = "Select episodes";
+ optionEle.innerText = "Select Episodes";
 selectEle.appendChild(optionEle);
 
 function optionList (list) {
@@ -84,10 +80,16 @@ function optionList (list) {
 const options = optionList(allEpisodes);
 
 options.forEach(item => {
-  let optionValue = document.createElement("option");
+  const optionValue = document.createElement("option");
   optionValue.innerText = `${item.episodeCode} - ${item.name}`;
 
   document.querySelector("#selector").appendChild(optionValue);
 })
+
+let footerEle= document.getElementById("footer");
+const footerLink = document.createElement("a");
+footerLink.href = "https://www.tvmaze.com/"
+footerLink.textContent = "data from tvmaze.com";
+footerEle.appendChild(footerLink);
 
 
