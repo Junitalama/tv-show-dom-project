@@ -58,7 +58,7 @@ function searchText(){
  
   
   allEpisodes.innerHTML = "";
-  document.querySelector("#quantity").innerText = filteredEpisodes.length;
+  document.querySelector("#num").innerText = filteredEpisodes.length;
   filteredEpisodes.forEach(episode => makePageForEpisodes(episode));
 }
 

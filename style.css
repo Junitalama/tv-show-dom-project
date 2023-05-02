@@ -13,6 +13,7 @@
   background-color:azure;
   max-width: 300px;
   border-radius: 3%;
+  border: 1px solid orchid;
   
 }
 
@@ -33,5 +34,13 @@ align-self: center;
 
 p{
   text-align: justify;
+}
+
+#search , #selector {
+  color: green
+  ;
+  padding: 5px;
+  border: 2px solid orchid;
+  margin-bottom: 20px;
 }
 
