@@ -8,7 +8,7 @@ function setup() {
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
  // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
-episodeList.forEach(episode => {
+  episodeList.forEach(episode => {
   let divEle = document.createElement("div");
   divEle.className = "card";
 
@@ -42,27 +42,31 @@ episodeList.forEach(episode => {
 window.onload = setup;
 //level 200
 
-document.querySelector("#search").addEventListener("input", searchText);
+ document.querySelector("#search").addEventListener("input", searchText);
 
 function searchText(){
+  
   const searchInput = document.querySelector("#search").value.toLowerCase();
-  const filteredEpisodes = allEpisodes.filter(episode => {
+  const  filteredEpisodes = allEpisodes.filter(episode => {
       if (episode.name.toLowerCase().includes(searchInput) || episode.summary.toLowerCase().includes(searchInput)){
-        return episode;
+       // return episode
+        console.log("episode")
       }
   })
   
+ 
+  
   allEpisodes.innerHTML = "";
   document.querySelector("#quantity").innerText = filteredEpisodes.length;
-  filteredEpisodes.forEach(episode => episodeList(episode));
+  filteredEpisodes.forEach(episode => makePageForEpisodes(episodeList));
 }
 
 //level 300
 
-// selectEle = document.querySelector("#selector");
-// optionEle = document.createElement("option");
-// optionEle.innerText = "select episodes";
-// selectEle.appendChild(optionEle);
+ selectEle = document.querySelector("#selector");
+optionEle = document.createElement("option");
+ optionEle.innerText = "Select episodes";
+selectEle.appendChild(optionEle);
 
 function optionList (list) {
     const selectList = [];
