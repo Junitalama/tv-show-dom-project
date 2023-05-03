@@ -5,6 +5,7 @@ function setup() {
 }
 
 //level 100
+//showing all episodes
 
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
@@ -38,7 +39,9 @@ function makePageForEpisodes(episodeList) {
 };
 }
 window.onload = setup;
+
 //level 200
+//search bar
 
  document.querySelector("#search").addEventListener("input", searchText);
 
@@ -50,15 +53,15 @@ function searchText(){
         
       }
   })
-  
- 
-  
   allEpisodes.innerHTML = "";
   document.querySelector("#num").innerText = filteredEpisodes.length;
   filteredEpisodes.forEach(episode => makePageForEpisodes(episode));
-}
+ }
+  
+  
 
 //level 300
+//select bar
 
  selectEle = document.querySelector("#selector");
 optionEle = document.createElement("option");
@@ -85,6 +88,8 @@ options.forEach(item => {
 
   document.querySelector("#selector").appendChild(optionValue);
 })
+
+//footer
 
 let footerEle= document.getElementById("footer");
 const footerLink = document.createElement("a");
