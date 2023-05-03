@@ -10,6 +10,7 @@ function setup() {
 function makePageForEpisodes(episodeList) {
   const rootElem = document.getElementById("root");
  // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
+ rootElem.innerHTML = "";
   for(let episode of episodeList) {
   let divEle = document.createElement("div");
   divEle.className = "card";
@@ -43,41 +44,38 @@ window.onload = setup;
 //level 200
 //search bar
 
- document.querySelector("#search").addEventListener("input", searchText);
+document.querySelector("#search").addEventListener("input", searchEpisode);
 
-function searchText(){
+function searchEpisode(){
   const searchInput = document.querySelector("#search").value.toLowerCase();
-  const  filteredEpisodes = allEpisodes.filter(episode => {
+  const filteredEpisodes = allEpisodes.filter(episode => {
       if (episode.name.toLowerCase().includes(searchInput) || episode.summary.toLowerCase().includes(searchInput)){
-       return episode;
-        
+      return episode
       }
   })
-  allEpisodes.innerHTML = "";
+
   document.querySelector("#num").innerText = filteredEpisodes.length;
-  filteredEpisodes.forEach(episode => makePageForEpisodes(episode));
- }
+  makePageForEpisodes(filteredEpisodes);
   
-  
+}
 
 //level 300
 //select bar
 
- selectEle = document.querySelector("#selector");
+selectEle = document.querySelector("#selector");
 optionEle = document.createElement("option");
- optionEle.innerText = "Select Episodes";
+optionEle.innerText = "Select Episodes";
 selectEle.appendChild(optionEle);
 
 function optionList (list) {
-    const selectList = [];
-
+  const selectList = [];
     for (let item of list){
       let listItem = {};
       listItem.name = item.name;
       listItem.episodeCode = `S${String(item.season).padStart(2, "0")}E${String(item.number).padStart(2, "0")}`;
       selectList.push(listItem);
     }
-    return selectList;
+  return selectList;
 }
 
 const options = optionList(allEpisodes);
@@ -96,5 +94,7 @@ const footerLink = document.createElement("a");
 footerLink.href = "https://www.tvmaze.com/"
 footerLink.textContent = "data from tvmaze.com";
 footerEle.appendChild(footerLink);
+
+window.onload = setup;
 
 
