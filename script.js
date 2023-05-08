@@ -1,6 +1,6 @@
-const allEpisodes = getAllEpisodes();
+let allEpisodes = getAllEpisodes();
 function setup() {
-  const allEpisodes = getAllEpisodes();
+//let allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
 }
 
@@ -8,7 +8,7 @@ function setup() {
 //showing all episodes
 
 function makePageForEpisodes(episodeList) {
-  const rootElem = document.getElementById("root");
+  let rootElem = document.getElementById("root");
  // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
  rootElem.innerHTML = "";
   for(let episode of episodeList) {
@@ -22,20 +22,17 @@ function makePageForEpisodes(episodeList) {
   
 
   const image = document.createElement("img");
-  image.src = episode.image["medium"];
+  image.src = episode.image.medium;
 
   const episodeSummary = document.createElement("p");
   episodeSummary.innerHTML = episode.summary;
 
-
-  divEle.append(
+divEle.append(
     episodeName,
     lineEle,
     image,
     episodeSummary,
-    
-    
-);
+  );
   rootElem.append(divEle)
 };
 }
@@ -44,13 +41,14 @@ window.onload = setup;
 //level 200
 //search bar
 
-document.querySelector("#search").addEventListener("input", searchEpisode);
+searchEle = document.querySelector("#search")
+searchEle.addEventListener("input", searchEpisode);
 
 function searchEpisode(){
-  const searchInput = document.querySelector("#search").value.toLowerCase();
+  const searchInput = searchEle.value.toLowerCase();
   const filteredEpisodes = allEpisodes.filter(episode => {
       if (episode.name.toLowerCase().includes(searchInput) || episode.summary.toLowerCase().includes(searchInput)){
-      return episode
+      return episode;
       }
   })
 
@@ -62,30 +60,32 @@ function searchEpisode(){
 //level 300
 //select bar
 
-selectEle = document.querySelector("#selector");
-optionEle = document.createElement("option");
-optionEle.innerText = "Select Episodes";
+let selectEle = document.querySelector("#selector");
+let optionEle = document.createElement("option")
+optionEle.innerText= "Select Episodes";
 selectEle.appendChild(optionEle);
 
-function optionList (list) {
-  const selectList = [];
-    for (let item of list){
-      let listItem = {};
-      listItem.name = item.name;
-      listItem.episodeCode = `S${String(item.season).padStart(2, "0")}E${String(item.number).padStart(2, "0")}`;
-      selectList.push(listItem);
-    }
-  return selectList;
-}
+allEpisodes.forEach(el => {
+    let options = document.createElement("option");
+    options.value = el.name;
+    options.innerText = `${el.name} - S${el.season.toString().padStart(2, "0")}E${el.number.toString().padStart(2, "0")}`;
 
-const options = optionList(allEpisodes);
+selectEle.appendChild(options);
+});
 
-options.forEach(item => {
-  const optionValue = document.createElement("option");
-  optionValue.innerText = `${item.episodeCode} - ${item.name}`;
+ selectEle.addEventListener("change", function () {
+    let selected = selectEle.value;
+    let episodes = Array.from(document.getElementsByClassName("card"));
 
-  document.querySelector("#selector").appendChild(optionValue);
-})
+    episodes.forEach((episode) => {
+    let h1Element = episode.querySelector("h1");
+    if (h1Element.innerText.includes(selected)) {
+          episode.style.display = "block";
+        } else {
+          episode.style.display = "none";
+        }
+    });
+  });
 
 //footer
 
