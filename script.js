@@ -81,6 +81,8 @@ selectEle.appendChild(options);
     let h1Element = episode.querySelector("h1");
     if (h1Element.innerText.includes(selected)) {
           episode.style.display = "block";
+          document.querySelector("#num").innerText = 1;
+
         } else {
           episode.style.display = "none";
         }
