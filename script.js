@@ -16,7 +16,7 @@ function makePageForEpisodes(episodeList) {
   divEle.className = "card";
 
   const episodeName =document.createElement("h1");
-  episodeName.innerText = `${episode.name}-S${(String(episode.season).padStart(2,'0'))}E${String(episode.number).padStart(2,'0')}`;
+  episodeName.innerText = `${episode.name} - S${(String(episode.season).padStart(2,'0'))}E${String(episode.number).padStart(2,'0')}`;
   const lineEle = document.createElement("div");
   lineEle.className = "l";
   
@@ -28,10 +28,10 @@ function makePageForEpisodes(episodeList) {
   episodeSummary.innerHTML = episode.summary;
 
 divEle.append(
-    episodeName,
-    lineEle,
-    image,
-    episodeSummary,
+  episodeName,
+  lineEle,
+  image,
+  episodeSummary,
   );
   rootElem.append(divEle)
 };
@@ -51,43 +51,40 @@ function searchEpisode(){
       return episode;
       }
   })
-
-  document.querySelector("#num").innerText = filteredEpisodes.length;
-  makePageForEpisodes(filteredEpisodes);
-  
+document.querySelector("#num").innerText = filteredEpisodes.length;
+makePageForEpisodes(filteredEpisodes);
 }
 
 //level 300
 //select bar
 
-let selectEle = document.querySelector("#selector");
+let selectEle = document.getElementById("selector");
 let optionEle = document.createElement("option")
 optionEle.innerText= "Select Episodes";
 selectEle.appendChild(optionEle);
 
 allEpisodes.forEach(el => {
-    let options = document.createElement("option");
-    options.value = el.name;
-    options.innerText = `${el.name} - S${el.season.toString().padStart(2, "0")}E${el.number.toString().padStart(2, "0")}`;
+  let options = document.createElement("option");
+  options.value = el.name;
+  options.innerText = `S${el.season.toString().padStart(2, "0")}E${el.number.toString().padStart(2, "0")} - ${el.name} `;
 
 selectEle.appendChild(options);
 });
 
- selectEle.addEventListener("change", function () {
-    let selected = selectEle.value;
-    let episodes = Array.from(document.getElementsByClassName("card"));
+selectEle.addEventListener("change", function () {
+  let selectedEpisode = selectEle.value;
+  let episodes = Array.from(document.getElementsByClassName("card"));
 
-    episodes.forEach((episode) => {
-    let h1Element = episode.querySelector("h1");
-    if (h1Element.innerText.includes(selected)) {
-          episode.style.display = "block";
-          document.querySelector("#num").innerText = 1;
-
-        } else {
-          episode.style.display = "none";
-        }
-    });
+episodes.forEach((episode) => {
+  let h1Element = episode.querySelector("h1");
+  if (h1Element.innerText.includes(selectedEpisode)) {
+      episode.style.display = "block";
+      document.querySelector("#num").innerText = 1;
+      } else {
+      episode.style.display = "none";
+    }
   });
+});
 
 //footer
 
