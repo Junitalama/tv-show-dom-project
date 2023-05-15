@@ -1,11 +1,13 @@
 //level 350
 function setup() {
-  fetch("https://api.tvmaze.com/shows/82/episodes")
+  fetch("https://api.tvmaze.com/shows/5/episodes")
     .then(function (response) {
       return response.json();
     })
     .then((result) => {
-      makePageForEpisodes(result);
+      makePageForEpisodes(result)
+      searchBar(result)
+      selectMenu(result);
     });
 }
 
@@ -42,43 +44,41 @@ divEle.append(
   rootElem.append(divEle)
 };
 }
-//window.onload = setup;
+window.onload = setup;
 
 //level 200
 //search bar
 allEpisodes = getAllEpisodes();
+function searchBar(allEpisodes){
 searchEle = document.querySelector("#search")
-searchEle.addEventListener("input", searchEpisode);
-
-function searchEpisode(){
+searchEle.addEventListener("input", function searchEpisode(){
   const searchInput = searchEle.value.toLowerCase();
   const filteredEpisodes = allEpisodes.filter(episode => {
       if (episode.name.toLowerCase().includes(searchInput) || episode.summary.toLowerCase().includes(searchInput)){
       return episode;
-      }
+  }
   })
 document.querySelector("#num").innerText = filteredEpisodes.length;
 makePageForEpisodes(filteredEpisodes);
+})
 }
 
 //level 300
 //select bar
-
+function selectMenu (allEpisodes){
 let selectEle = document.getElementById("selector");
 let optionEle = document.createElement("option")
 optionEle.innerText= "Select Episodes";
 selectEle.appendChild(optionEle);
 
 allEpisodes.forEach(el => {
-let options = document.createElement("option");
-options.value = el.name;
-options.innerText = `S${el.season.toString().padStart(2, "0")}E${el.number.toString().padStart(2, "0")} - ${el.name} `;
+  let options = document.createElement("option");
+  options.value = el.name;
+  options.innerText = `S${el.season.toString().padStart(2, "0")}E${el.number.toString().padStart(2, "0")} - ${el.name} `;
 
 selectEle.appendChild(options);
 });
-selectEle.addEventListener("change", dropDownMenu);
-
-function dropDownMenu() {
+selectEle.addEventListener("change", function dropDownMenu() {
   let selectedEpisode = selectEle.value;
 
   const filterEpisodes = allEpisodes.filter((episode) => {
@@ -95,8 +95,8 @@ function dropDownMenu() {
 
   document.getElementById("num").innerText = filterEpisodes.length;
   makePageForEpisodes(filterEpisodes);
+})
 }
-
 
 
 //footer
@@ -107,8 +107,8 @@ footerLink.href = "https://www.tvmaze.com/"
 footerLink.textContent = "data from tvmaze.com";
 footerEle.appendChild(footerLink);
 
-window.onload = setup;
+//window.onload = setup;
 
-
+//level 350
 
 
