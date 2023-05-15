@@ -1,6 +1,6 @@
 //level 350
 function setup() {
-  fetch("https://api.tvmaze.com/shows/5/episodes")
+  fetch("https://api.tvmaze.com/shows/82/episodes")
     .then(function (response) {
       return response.json();
     })
@@ -100,15 +100,11 @@ selectEle.addEventListener("change", function dropDownMenu() {
 
 
 //footer
-
 let footerEle= document.getElementById("footer");
 const footerLink = document.createElement("a");
 footerLink.href = "https://www.tvmaze.com/"
 footerLink.textContent = "data from tvmaze.com";
 footerEle.appendChild(footerLink);
 
-//window.onload = setup;
-
-//level 350
 
 
