@@ -1,8 +1,14 @@
-let allEpisodes = getAllEpisodes();
+//level 350
 function setup() {
-//let allEpisodes = getAllEpisodes();
-  makePageForEpisodes(allEpisodes);
+  fetch("https://api.tvmaze.com/shows/82/episodes")
+    .then(function (response) {
+      return response.json();
+    })
+    .then((result) => {
+      makePageForEpisodes(result);
+    });
 }
+
 
 //level 100
 //showing all episodes
@@ -36,11 +42,11 @@ divEle.append(
   rootElem.append(divEle)
 };
 }
-window.onload = setup;
+//window.onload = setup;
 
 //level 200
 //search bar
-
+allEpisodes = getAllEpisodes();
 searchEle = document.querySelector("#search")
 searchEle.addEventListener("input", searchEpisode);
 
@@ -64,27 +70,34 @@ optionEle.innerText= "Select Episodes";
 selectEle.appendChild(optionEle);
 
 allEpisodes.forEach(el => {
-  let options = document.createElement("option");
-  options.value = el.name;
-  options.innerText = `S${el.season.toString().padStart(2, "0")}E${el.number.toString().padStart(2, "0")} - ${el.name} `;
+let options = document.createElement("option");
+options.value = el.name;
+options.innerText = `S${el.season.toString().padStart(2, "0")}E${el.number.toString().padStart(2, "0")} - ${el.name} `;
 
 selectEle.appendChild(options);
 });
+selectEle.addEventListener("change", dropDownMenu);
 
-selectEle.addEventListener("change", function () {
+function dropDownMenu() {
   let selectedEpisode = selectEle.value;
-  let episodes = Array.from(document.getElementsByClassName("card"));
 
-episodes.forEach((episode) => {
-  let h1Element = episode.querySelector("h1");
-  if (h1Element.innerText.includes(selectedEpisode)) {
-      episode.style.display = "block";
-      document.querySelector("#num").innerText = 1;
-      } else {
-      episode.style.display = "none";
+  const filterEpisodes = allEpisodes.filter((episode) => {
+    if (
+      episode.name.includes(
+        selectedEpisode || episode.summary.includes(selectedEpisode)
+      )
+    ) {
+      return episode;
+    } else if (selectedEpisode == optionEle.innerText) {
+      return allEpisodes;
     }
   });
-});
+
+  document.getElementById("num").innerText = filterEpisodes.length;
+  makePageForEpisodes(filterEpisodes);
+}
+
+
 
 //footer
 
@@ -95,5 +108,7 @@ footerLink.textContent = "data from tvmaze.com";
 footerEle.appendChild(footerLink);
 
 window.onload = setup;
+
+
 
 
