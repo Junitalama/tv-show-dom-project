@@ -12,7 +12,7 @@ allShows.sort(function (a, b) {
  
 let showEle = document.getElementById("select-show");
 let optionEle = document.createElement("option");
-optionEle.innerText = "Select a Show from list";
+optionEle.innerText = "Select a show";
 showEle.appendChild(optionEle);
 
 function showsList() {
@@ -86,8 +86,8 @@ searchEle = document.querySelector("#search")
 searchEle.addEventListener("input", function searchEpisode(){
   const searchInput = searchEle.value.toLowerCase();
   const filteredEpisodes = allEpisodes.filter(episode => {
-      if (episode.name.toLowerCase().includes(searchInput) || episode.summary.toLowerCase().includes(searchInput)){
-      return episode;
+    if (episode.name.toLowerCase().includes(searchInput) || episode.summary.toLowerCase().includes(searchInput)){
+    return episode;
   }
   })
 document.querySelector("#num").innerText = filteredEpisodes.length;
@@ -107,8 +107,7 @@ allEpisodes.forEach(el => {
   let options = document.createElement("option");
   options.value = el.name;
   options.innerText = `S${el.season.toString().padStart(2, "0")}E${el.number.toString().padStart(2, "0")} - ${el.name} `;
-
-selectEle.appendChild(options);
+  selectEle.appendChild(options);
 });
 selectEle.addEventListener("change", function dropDownMenu() {
   let selectedEpisode = selectEle.value;
@@ -124,7 +123,6 @@ selectEle.addEventListener("change", function dropDownMenu() {
       return allEpisodes;
     }
   });
-
   document.getElementById("num").innerText = filterEpisodes.length;
   makePageForEpisodes(filterEpisodes);
 })
