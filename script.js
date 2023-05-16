@@ -1,16 +1,43 @@
-//level 350
-function setup() {
-  fetch("https://api.tvmaze.com/shows/82/episodes")
+//level 400
+
+const allShows = getAllShows();
+allShows.sort(function (a, b) {
+    return a.name.localeCompare(b.name); 
+  });
+ 
+let showEle = document.getElementById("select-show");
+let optionEle = document.createElement("option");
+optionEle.innerText = "Select a Show from list";
+showEle.appendChild(optionEle);
+
+function showsList() {
+  allShows.forEach((show) => {
+    let option = document.createElement("option");
+    option.innerText = show.name;
+    showEle.appendChild(option);
+  });
+}
+showsList();
+
+showEle.addEventListener("change", selectAShow);
+function selectAShow() {
+  const showName = showEle.value;
+  const selectedShow = allShows.filter((show) => showName === show.name);
+  const showId = selectedShow[0].id;
+
+  fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
     .then(function (response) {
       return response.json();
     })
     .then((result) => {
-      makePageForEpisodes(result)
-      searchBar(result)
+      makePageForEpisodes(result);
       selectMenu(result);
+      searchBar(result);
+    })
+    .catch((error) => {
+      console.log(error);
     });
 }
-
 
 //level 100
 //showing all episodes
@@ -44,11 +71,11 @@ divEle.append(
   rootElem.append(divEle)
 };
 }
-window.onload = setup;
+//window.onload = setup;
 
 //level 200
 //search bar
-allEpisodes = getAllEpisodes();
+//allEpisodes = getAllEpisodes();
 function searchBar(allEpisodes){
 searchEle = document.querySelector("#search")
 searchEle.addEventListener("input", function searchEpisode(){

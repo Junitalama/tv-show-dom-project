@@ -38,7 +38,7 @@ p{
   text-align: justify;
 }
 
-#search , #selector {
+#search , #selector, #select-show{
   color: green;
   padding: 10px;
   border: 2px solid orchid;
