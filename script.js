@@ -1,4 +1,9 @@
 //level 400
+function setup() {
+  
+};
+
+window.onload = setup;
 
 const allShows = getAllShows();
 allShows.sort(function (a, b) {
@@ -132,6 +137,5 @@ const footerLink = document.createElement("a");
 footerLink.href = "https://www.tvmaze.com/"
 footerLink.textContent = "data from tvmaze.com";
 footerEle.appendChild(footerLink);
-
 
 
