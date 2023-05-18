@@ -46,6 +46,15 @@ function selectAShow() {
 
 //level 100
 //showing all episodes
+headerEle = document.getElementById("header");
+imgEle = document.createElement("img");
+imgEle.src = "https://iptvwire.com/wp-content/uploads/2022/07/how-to-watch-live-tv-on-firestick-free.png"
+imgEle.className = "tv_img";
+pEle = document.createElement("p");
+pEle.innerText = "Rizzi's tvZone";
+pEle.className = "welcome";
+
+headerEle.append(imgEle, pEle);
 
 function makePageForEpisodes(episodeList) {
   let rootElem = document.getElementById("root");

@@ -1,8 +1,27 @@
 #root {
-  color:black;
+  color:white;
+  size: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+body {
+  background-image:url("https://mcdn.wallpapersafari.com/medium/26/41/7g30nz.jpg");
+}
+
+#header{
+  display: flex;
+  flex-direction: row;
+  background-color: darkslategray;
+  margin-bottom: 20px;
+}
+.tv_img {
+  width:150px;
+}
+.welcome {
+  font-size: 40px;
+  color: green;
+  margin-bottom: 20px;
 }
 
 .card {
@@ -10,25 +29,21 @@
   flex-direction: column;
   margin : 10px;
   padding : 32px;
-  background-color:azure;
   max-width: 300px;
   border-radius: 3%;
-  border: 1px solid orchid;
-  
+  border: 1px solid black;
+  background-color:darkslategray;
 }
 
-
-
-h1{ 
+h1 { 
   font-size: 20px;
 }
 
 .l {
   margin-bottom: 20px;
-  border: 1px solid orchid;
+  border: 1px solid black;
   
 }
-
 
 img {
 align-self: center;
@@ -39,10 +54,11 @@ p{
 }
 
 #search , #selector, #select-show{
-  color: green;
-  padding: 10px;
-  border: 2px solid orchid;
+  color:black ;
+  padding: 5px;
+  border: 2px solid black;
   margin-bottom: 20px;
+  background-color: beige;
 }
 
 #footer {
@@ -51,5 +67,5 @@ p{
   justify-content: center;
   font-size: 20px;
   font-family: cursive;
-  color: red;
+  color:brown;
 }
