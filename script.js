@@ -62,7 +62,8 @@ function makePageForEpisodes(episodeList) {
   
 
   const image = document.createElement("img");
-  image.src = episode.image.medium;
+  if(episode.image){
+  image.src = episode.image.medium;}
 
   const episodeSummary = document.createElement("p");
   episodeSummary.innerHTML = episode.summary;
