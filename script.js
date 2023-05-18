@@ -102,6 +102,7 @@ let selectEle = document.getElementById("selector");
 let optionEle = document.createElement("option")
 optionEle.innerText= "Select Episodes";
 selectEle.appendChild(optionEle);
+selectEle.innerHTML = "";
 
 allEpisodes.forEach(el => {
   let options = document.createElement("option");
@@ -123,6 +124,7 @@ selectEle.addEventListener("change", function dropDownMenu() {
       return allEpisodes;
     }
   });
+  //selectEle.innerHTML = "";
   document.getElementById("num").innerText = filterEpisodes.length;
   makePageForEpisodes(filterEpisodes);
 })
