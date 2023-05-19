@@ -109,10 +109,10 @@ makePageForEpisodes(filteredEpisodes);
 //select bar
 function selectMenu (allEpisodes){
 let selectEle = document.getElementById("selector");
+selectEle.innerHTML = "";
 let optionEle = document.createElement("option")
 optionEle.innerText= "Select Episodes";
 selectEle.appendChild(optionEle);
-selectEle.innerHTML = "";
 
 allEpisodes.forEach(el => {
   let options = document.createElement("option");
