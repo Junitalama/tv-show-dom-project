@@ -1,14 +1,70 @@
 //level 400
+
+const allShows = getAllShows()
 function setup() {
-  
+makePageForShow(allShows);
 };
+
+function makePageForShow(shows){
+  let showsEle = document.getElementById("show_div");
+  showsEle.innerHTML = "";
+  for (let show of shows){
+  const divEle = document.createElement ("div");
+  divEle.className = "show_card";
+    
+  const firstDiv = document.createElement("div")
+  firstDiv.className = "first"
+  const showName =document.createElement("h1");
+  showName.innerText = show.name;
+  firstDiv.append(showName);
+
+  const image = document.createElement("img");
+  image.className = "image_1";
+  if(show.image){
+  image.src = show.image.medium;}
+  firstDiv.append(image);
+
+  const secondDiv = document.createElement("div")
+  secondDiv.className = "second";
+  const showSummary = document.createElement("p");
+  showSummary.className = "summary";
+  showSummary.innerHTML = show.summary;
+  secondDiv.append(showSummary);
+
+const thirdDiv = document.createElement("div")
+   thirdDiv.className = "third";
+   const ratingEle = document.createElement("P");
+   ratingEle.innerText = `Rated : ${show.rating.average}`
+   thirdDiv.appendChild(ratingEle);
+
+   const genreEle = document.createElement("p");
+   genreEle.innerText = `Genres : ${show.genres}`;
+   thirdDiv.appendChild(genreEle);
+
+   const statusEle = document.createElement("p");
+   statusEle.innerText = `Status : ${show.status}`;
+   thirdDiv.appendChild(statusEle);
+
+   const runTimeEle = document.createElement("p");
+   runTimeEle.innerText = `Runtime : ${show.runtime}`;
+   thirdDiv.appendChild(runTimeEle);
+
+
+divEle.append(firstDiv,secondDiv,thirdDiv);
+showsEle.appendChild(divEle);
+    }
+
+}
+
 
 window.onload = setup;
 
-const allShows = getAllShows();
-allShows.sort(function (a, b) {
+
+
+  allShows.sort(function (a, b) {
     return a.name.localeCompare(b.name); 
   });
+
  
 let showEle = document.getElementById("select-show");
 let optionEle = document.createElement("option");
@@ -24,17 +80,21 @@ function showsList() {
 }
 showsList();
 
+
 showEle.addEventListener("change", selectAShow);
 function selectAShow() {
   const showName = showEle.value;
   const selectedShow = allShows.filter((show) => showName === show.name);
   const showId = selectedShow[0].id;
+  
 
+  
   fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
     .then(function (response) {
       return response.json();
     })
     .then((result) => {
+      makePageForShow(result);
       makePageForEpisodes(result);
       selectMenu(result);
       searchBar(result);
@@ -43,8 +103,8 @@ function selectAShow() {
       console.log(error);
     });
 }
+//
 
-//level 100
 //showing all episodes
 headerEle = document.getElementById("header");
 imgEle = document.createElement("img");
@@ -56,10 +116,11 @@ pEle.className = "welcome";
 
 headerEle.append(imgEle, pEle);
 
+//level 100
 function makePageForEpisodes(episodeList) {
   let rootElem = document.getElementById("root");
  // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
- rootElem.innerHTML = "";
+ //rootElem.innerHTML = "";
   for(let episode of episodeList) {
   let divEle = document.createElement("div");
   divEle.className = "card";
@@ -85,6 +146,7 @@ divEle.append(
   );
   rootElem.append(divEle)
 };
+
 }
 //window.onload = setup;
 
@@ -134,11 +196,13 @@ selectEle.addEventListener("change", function dropDownMenu() {
       return allEpisodes;
     }
   });
-  //selectEle.innerHTML = "";
+  
   document.getElementById("num").innerText = filterEpisodes.length;
   makePageForEpisodes(filterEpisodes);
 })
 }
+
+
 
 
 //footer

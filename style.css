@@ -1,10 +1,44 @@
-#root {
-  color:white;
-  size: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+#show_div {
+color: white;
+
 }
+
+.show_card{
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+column-gap: 40px;
+
+
+}
+.first{display: block;
+  justify-items: flex-start;
+  margin-bottom: 10px;
+  background-color:chocolate;
+
+}
+ .second{
+  justify-items: center;
+  margin-left: 10px;
+  margin-right: 30px;
+  font-size: 20px;
+ }
+
+ .third{
+  margin-bottom: 10px;
+ 
+
+ }
+
+
+.image_1{
+  
+  width:500px;
+}
+ .summary{
+  display: flex;
+  background-color: black;
+  font-size: 20px;
+ }
 body {
   background-image:url("https://mcdn.wallpapersafari.com/medium/26/41/7g30nz.jpg");
 }
@@ -14,16 +48,25 @@ body {
   flex-direction: row;
   background-image: url("https://images6.alphacoders.com/846/846724.jpg");
   margin-bottom: 20px;
+  border:1px solid orange;
 }
 .tv_img {
   width:150px;
 }
 .welcome {
-  font-size: 40px;
-  color:blue;
+  font-size: 50px;
+  color:orange;
 }
-
-.card {
+ 
+#root {
+  color:white;
+  size: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card
+{
   display: flex;
   flex-direction: column;
   margin : 10px;
@@ -40,7 +83,7 @@ h1 {
 
 .l {
   margin-bottom: 20px;
-  border: 1px solid blue;
+  border: 1px solid orange;
   
 }
 
@@ -53,11 +96,11 @@ p{
 }
 
 #search , #selector, #select-show{
-  color:black ;
+  color:white ;
   padding: 5px;
-  border: 2px solid black;
+  border: 1px solid orange;
   margin-bottom: 20px;
-  background-color: beige;
+  background-color: black;
 }
 
 #footer {
