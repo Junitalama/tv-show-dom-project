@@ -53,11 +53,30 @@ function makePageForShow(shows){
 divEle.append(firstDiv,secondDiv,thirdDiv);
 showsEle.appendChild(divEle);
     }
+    
+}
+window.onload = setup;
+//Adding home button to go back to home page.
+const button = document.getElementById("home");
+button.addEventListener("click", function(){
+    makePageForShow(allShows);
+});
 
+function searchForShow(shows){
+const searchEle = document.querySelector("#searching")
+searchEle.addEventListener("input", function searchshows(){
+  const searchInput = searchEle.value.toLowerCase();
+  const filteredshows = shows.filter(show => {
+    if (show.name.toLowerCase().includes(searchInput) || show.summary.toLowerCase().includes(searchInput)|| show.genres.toLowerCase().includes(searchInput)){
+    return show
+    
+  }
+  })
+document.querySelector("#number").innerText = filteredshows.length;
+makePageForShow(filteredshows);
+})
 }
 
-
-window.onload = setup;
 
 allShows.sort(function (a, b) {
     return a.name.localeCompare(b.name); 
@@ -93,11 +112,13 @@ function selectAShow() {
     })
     .then((result) => {
       makePageForShow(result);
+       searchForShow(result);
       let showsEle = document.getElementById("show_div");
       showsEle.innerHTML = "";
       makePageForEpisodes(result);
       selectMenu(result);
       searchBar(result);
+      
     })
     .catch((error) => {
       console.log(error);

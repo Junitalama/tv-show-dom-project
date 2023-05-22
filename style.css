@@ -25,7 +25,7 @@ margin-bottom: 50px;
 }
 
  .third{
-  width: 150px;
+  width: 250px;
   height:150px;
   border: 1px solid white;
   color: black;
@@ -98,8 +98,13 @@ align-self: center;
 p{
   text-align: justify;
 }
+#home {
+  background-color: chocolate;
+  padding: 10px;
+  color: azure;
+}
 
-#search , #selector, #select-show{
+#search , #selector, #select-show, #searching {
   color:white ;
   padding: 5px;
   border: 1px solid orange;
