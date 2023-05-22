@@ -31,7 +31,7 @@ function makePageForShow(shows){
   showSummary.innerHTML = show.summary;
   secondDiv.append(showSummary);
 
-const thirdDiv = document.createElement("div")
+  const thirdDiv = document.createElement("div")
    thirdDiv.className = "third";
    const ratingEle = document.createElement("P");
    ratingEle.innerText = `Rated : ${show.rating.average}`
@@ -59,9 +59,7 @@ showsEle.appendChild(divEle);
 
 window.onload = setup;
 
-
-
-  allShows.sort(function (a, b) {
+allShows.sort(function (a, b) {
     return a.name.localeCompare(b.name); 
   });
 
@@ -95,6 +93,8 @@ function selectAShow() {
     })
     .then((result) => {
       makePageForShow(result);
+      let showsEle = document.getElementById("show_div");
+      showsEle.innerHTML = "";
       makePageForEpisodes(result);
       selectMenu(result);
       searchBar(result);
@@ -120,7 +120,7 @@ headerEle.append(imgEle, pEle);
 function makePageForEpisodes(episodeList) {
   let rootElem = document.getElementById("root");
  // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
- //rootElem.innerHTML = "";
+ rootElem.innerHTML = "";
   for(let episode of episodeList) {
   let divEle = document.createElement("div");
   divEle.className = "card";
