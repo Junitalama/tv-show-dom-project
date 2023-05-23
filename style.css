@@ -1,5 +1,11 @@
+:root {
+  --black:#000;
+  --white:#FFF;
+  --dark-green:#394B2A;
+  --medium-green:#5E7D1F;
+}
 #show_div {
-color: white;
+color: var(--white);
 
 }
 
@@ -15,7 +21,7 @@ margin-bottom: 50px;
   width:300px;
   height:400px;
   background-color:black;
-  border: 1px solid orange;
+  border: 2px solid var(--dark-green);
 }
  .second{
   width: 600px;
@@ -27,7 +33,7 @@ margin-bottom: 50px;
  .third{
   width: 250px;
   height:150px;
-  border: 1px solid white;
+  border: 2px solid white;
   color: black;
   background-color: azure;
  
@@ -38,7 +44,7 @@ margin-bottom: 50px;
   color:white;
   background-color: black;
   font-size: 20px;
-  border: 1px solid orange;
+  border: 2px solid var(--dark-green);
  }
  .image_1{height: 300px;
   width:300px;
@@ -52,14 +58,14 @@ body {
   flex-direction: row;
   background-image: url("https://images6.alphacoders.com/846/846724.jpg");
   margin-bottom: 20px;
-  border:1px solid orange;
+  border:2px solid var(--dark-green);
 }
 .tv_img {
   width:150px;
 }
 .welcome {
   font-size: 50px;
-  color:orange;
+  color:var(--medium-green)
 }
  
 #root {
@@ -77,7 +83,7 @@ body {
   padding : 32px;
   max-width: 300px;
   border-radius: 3%;
-  border: 1px solid;
+  border: 2px solid var(--dark-green);
   background-color:black;
 }
 
@@ -87,7 +93,7 @@ h1 {
 
 .l {
   margin-bottom: 20px;
-  border: 1px solid orange;
+  border: 1px solid var(--dark-green);
   
 }
 
@@ -99,7 +105,7 @@ p{
   text-align: justify;
 }
 #home {
-  background-color: chocolate;
+  background-color: var(--medium-green);
   padding: 10px;
   color: azure;
 }
@@ -107,7 +113,7 @@ p{
 #search , #selector, #select-show, #searching {
   color:white ;
   padding: 5px;
-  border: 1px solid orange;
+  border: 1px solid var(--dark-green);
   margin-bottom: 20px;
   background-color: black;
 }
