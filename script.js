@@ -1,10 +1,15 @@
 //level 400
-
 const allShows = getAllShows()
 function setup() {
 makePageForShow(allShows);
 };
 
+//sorting shows in alphabetical order
+allShows.sort(function (a, b) {
+    return a.name.localeCompare(b.name); 
+  });
+
+//showing all shows
 function makePageForShow(shows){
   let showsEle = document.getElementById("show_div");
   showsEle.innerHTML = "";
@@ -32,36 +37,38 @@ function makePageForShow(shows){
   secondDiv.append(showSummary);
 
   const thirdDiv = document.createElement("div")
-   thirdDiv.className = "third";
-   const ratingEle = document.createElement("P");
-   ratingEle.innerText = `Rated : ${show.rating.average}`
-   thirdDiv.appendChild(ratingEle);
+  thirdDiv.className = "third";
+  const ratingEle = document.createElement("P");
+  ratingEle.innerText = `Rated : ${show.rating.average}`
+  thirdDiv.appendChild(ratingEle);
 
-   const genreEle = document.createElement("p");
-   genreEle.innerText = `Genres : ${show.genres}`;
-   thirdDiv.appendChild(genreEle);
+  const genreEle = document.createElement("p");
+  genreEle.innerText = `Genres : ${show.genres}`;
+  thirdDiv.appendChild(genreEle);
 
-   const statusEle = document.createElement("p");
-   statusEle.innerText = `Status : ${show.status}`;
-   thirdDiv.appendChild(statusEle);
+  const statusEle = document.createElement("p");
+  statusEle.innerText = `Status : ${show.status}`;
+  thirdDiv.appendChild(statusEle);
 
-   const runTimeEle = document.createElement("p");
-   runTimeEle.innerText = `Runtime : ${show.runtime}`;
-   thirdDiv.appendChild(runTimeEle);
+  const runTimeEle = document.createElement("p");
+  runTimeEle.innerText = `Runtime : ${show.runtime}`;
+  thirdDiv.appendChild(runTimeEle);
 
 
 divEle.append(firstDiv,secondDiv,thirdDiv);
 showsEle.appendChild(divEle);
     }
-    
 }
+
 window.onload = setup;
-//Adding home button to go back to home page.
+let showsEle = document.getElementById("show_div");
+//Adding reset button to go back to home page.
 const button = document.getElementById("home");
 button.addEventListener("click", function(){
-    makePageForShow(allShows);
+  makePageForShow(allShows);
 });
 
+//Adding search bar for shows
 function searchForShow(shows){
 const searchEle = document.querySelector("#searching")
 searchEle.addEventListener("input", function searchshows(){
@@ -69,20 +76,14 @@ searchEle.addEventListener("input", function searchshows(){
   const filteredshows = shows.filter(show => {
     if (show.name.toLowerCase().includes(searchInput) || show.summary.toLowerCase().includes(searchInput)|| show.genres.toLowerCase().includes(searchInput)){
     return show
-    
-  }
+    }
   })
 document.querySelector("#number").innerText = filteredshows.length;
 makePageForShow(filteredshows);
 })
 }
 
-
-allShows.sort(function (a, b) {
-    return a.name.localeCompare(b.name); 
-  });
-
- 
+//select menu for shows
 let showEle = document.getElementById("select-show");
 let optionEle = document.createElement("option");
 optionEle.innerText = "Select a show";
@@ -97,24 +98,19 @@ function showsList() {
 }
 showsList();
 
-
 showEle.addEventListener("change", selectAShow);
 function selectAShow() {
   const showName = showEle.value;
   const selectedShow = allShows.filter((show) => showName === show.name);
   const showId = selectedShow[0].id;
-  
 
-  
   fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
     .then(function (response) {
       return response.json();
     })
     .then((result) => {
       makePageForShow(result);
-       searchForShow(result);
-      let showsEle = document.getElementById("show_div");
-      showsEle.innerHTML = "";
+      searchForShow(result);
       makePageForEpisodes(result);
       selectMenu(result);
       searchBar(result);
@@ -126,7 +122,7 @@ function selectAShow() {
 }
 //
 
-//showing all episodes
+//Adding page header
 headerEle = document.getElementById("header");
 imgEle = document.createElement("img");
 imgEle.src = "https://iptvwire.com/wp-content/uploads/2022/07/how-to-watch-live-tv-on-firestick-free.png"
@@ -137,10 +133,11 @@ pEle.className = "welcome";
 
 headerEle.append(imgEle, pEle);
 
-//level 100
+//level 100-showing all episodes
 function makePageForEpisodes(episodeList) {
+  let showsEle = document.getElementById("show_div");
+      showsEle.innerHTML = "";
   let rootElem = document.getElementById("root");
- // rootElem.textContent = `Got ${episodeList.length} episode(s)`;
  rootElem.innerHTML = "";
   for(let episode of episodeList) {
   let divEle = document.createElement("div");
@@ -151,7 +148,6 @@ function makePageForEpisodes(episodeList) {
   const lineEle = document.createElement("div");
   lineEle.className = "l";
   
-
   const image = document.createElement("img");
   if(episode.image){
   image.src = episode.image.medium;}
@@ -159,21 +155,13 @@ function makePageForEpisodes(episodeList) {
   const episodeSummary = document.createElement("p");
   episodeSummary.innerHTML = episode.summary;
 
-divEle.append(
-  episodeName,
-  lineEle,
-  image,
-  episodeSummary,
-  );
-  rootElem.append(divEle)
+divEle.append(episodeName,lineEle,image,episodeSummary,);
+rootElem.append(divEle)
 };
 
 }
-//window.onload = setup;
 
-//level 200
-//search bar
-//allEpisodes = getAllEpisodes();
+//level 200-search bar for episodes
 function searchBar(allEpisodes){
 searchEle = document.querySelector("#search")
 searchEle.addEventListener("input", function searchEpisode(){
@@ -188,8 +176,7 @@ makePageForEpisodes(filteredEpisodes);
 })
 }
 
-//level 300
-//select bar
+//level 300-select bar for episodes
 function selectMenu (allEpisodes){
 let selectEle = document.getElementById("selector");
 selectEle.innerHTML = "";
@@ -198,14 +185,13 @@ optionEle.innerText= "Select Episodes";
 selectEle.appendChild(optionEle);
 
 allEpisodes.forEach(el => {
-  let options = document.createElement("option");
-  options.value = el.name;
-  options.innerText = `S${el.season.toString().padStart(2, "0")}E${el.number.toString().padStart(2, "0")} - ${el.name} `;
-  selectEle.appendChild(options);
+let options = document.createElement("option");
+options.value = el.name;
+options.innerText = `S${el.season.toString().padStart(2, "0")}E${el.number.toString().padStart(2, "0")} - ${el.name} `;
+selectEle.appendChild(options);
 });
 selectEle.addEventListener("change", function dropDownMenu() {
   let selectedEpisode = selectEle.value;
-
   const filterEpisodes = allEpisodes.filter((episode) => {
     if (
       episode.name.includes(
@@ -217,14 +203,10 @@ selectEle.addEventListener("change", function dropDownMenu() {
       return allEpisodes;
     }
   });
-  
   document.getElementById("num").innerText = filterEpisodes.length;
   makePageForEpisodes(filterEpisodes);
 })
 }
-
-
-
 
 //footer
 let footerEle= document.getElementById("footer");
