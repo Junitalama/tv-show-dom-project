@@ -1,3 +1,4 @@
+
 //level 400
 const allShows = getAllShows()
 function setup() {
@@ -54,14 +55,26 @@ function makePageForShow(shows){
   runTimeEle.innerText = `Runtime : ${show.runtime}`;
   thirdDiv.appendChild(runTimeEle);
 
+  //navigating to episodes page by clicking show iamge.
+  image.addEventListener("click",function(){
+      let showId = show.id;
+      fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
+    .then(function (response) {
+      return response.json();
+    })
+    .then((result) => {
+makePageForEpisodes(result);
+    })})
 
 divEle.append(firstDiv,secondDiv,thirdDiv);
 showsEle.appendChild(divEle);
     }
 }
 
+  
+
 window.onload = setup;
-let showsEle = document.getElementById("show_div");
+
 //Adding reset button to go back to home page.
 const button = document.getElementById("home");
 button.addEventListener("click", function(){
@@ -102,7 +115,7 @@ showEle.addEventListener("change", selectAShow);
 function selectAShow() {
   const showName = showEle.value;
   const selectedShow = allShows.filter((show) => showName === show.name);
-  const showId = selectedShow[0].id;
+  let showId = selectedShow[0].id;
 
   fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
     .then(function (response) {
