@@ -14,29 +14,27 @@ display: flex;
 flex-wrap: wrap;
 margin-bottom: 40px;
 background-color: var(--black);
-column-gap: 100px;
+column-gap: 80px;
 border: 2px solid var(--dark-green);
 
 
 
 }
 .first{
-  display: block;
-  width:300px;
-  height:350px;
+  width:400px;
+  height:450px;
   background-color:black;
   
 }
  .second{
-  display: block;
+ 
   width: 600px;
   height:400px;
   font-size: 20px; 
 }
 
 .third{
-  display: block;
-  width: 300px;
+  width: 200px;
   height:150px;
   border: 2px solid white;
   color: black;
@@ -49,8 +47,8 @@ border: 2px solid var(--dark-green);
   font-size: 20px;
   background-color: var(--black);
  }
- .image_1{height: 300px;
-  width:300px;
+ .image_1{height: 400px;
+  width:400px;
 }
 body {
   position: absolute;
