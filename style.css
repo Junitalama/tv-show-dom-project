@@ -16,7 +16,7 @@ display: flex;
 flex-wrap: wrap;
 margin-bottom: 50px;
 background-color: #000;
-column-gap: 50px;
+column-gap: 100px;
 border: 2px solid var(--dark-green);
 
 }
