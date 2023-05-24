@@ -7,26 +7,31 @@
 #show_div {
 color: var(--white);
 
+
+
 }
 
 .show_card{
-display: grid;
-grid-template-columns: 1fr 3fr 1fr;
-grid-column-gap: 10px;
+display: flex;
+flex-wrap: wrap;
 margin-bottom: 50px;
-
+background-color: #000;
+column-gap: 50px;
+border: 2px solid var(--dark-green);
 
 }
 .first{
   width:300px;
-  height:400px;
+  height:350px;
   background-color:black;
-  border: 2px solid var(--dark-green);
+  
+  
 }
  .second{
   width: 600px;
-  height:300px;
+  height:200px;
   font-size: 20px;
+  
   
 }
 
@@ -36,7 +41,6 @@ margin-bottom: 50px;
   border: 2px solid white;
   color: black;
   background-color: azure;
- 
 
  }
  .summary{
