@@ -7,36 +7,36 @@
 #show_div {
 color: var(--white);
 
-
-
 }
 
 .show_card{
 display: flex;
 flex-wrap: wrap;
-margin-bottom: 50px;
-background-color: #000;
+margin-bottom: 40px;
+background-color: var(--black);
 column-gap: 100px;
 border: 2px solid var(--dark-green);
 
+
+
 }
 .first{
-  width:350px;
-  height:400px;
+  display: block;
+  width:300px;
+  height:350px;
   background-color:black;
-  
   
 }
  .second{
+  display: block;
   width: 600px;
-  height:350px;
-  font-size: 20px;
-  
-  
+  height:400px;
+  font-size: 20px; 
 }
 
- .third{
-  width: 250px;
+.third{
+  display: block;
+  width: 300px;
   height:150px;
   border: 2px solid white;
   color: black;
@@ -49,11 +49,13 @@ border: 2px solid var(--dark-green);
   font-size: 20px;
   background-color: var(--black);
  }
- .image_1{height: 350px;
-  width:350px;
+ .image_1{height: 300px;
+  width:300px;
 }
 body {
+  position: absolute;
   background-image:url("https://mcdn.wallpapersafari.com/medium/26/41/7g30nz.jpg");
+  
 }
 
 #header{
