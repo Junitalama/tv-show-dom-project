@@ -35,7 +35,7 @@ border: 2px solid var(--dark-green);
 
 .third{
   width: 200px;
-  height:150px;
+  height:200px;
   border: 2px solid white;
   color: black;
   background-color: azure;
@@ -53,6 +53,7 @@ border: 2px solid var(--dark-green);
 body {
   position: absolute;
   background-image:url("https://mcdn.wallpapersafari.com/medium/26/41/7g30nz.jpg");
+  font-family:'Times New Roman', Times, serif
   
 }
 
