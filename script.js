@@ -82,13 +82,13 @@ button.addEventListener("click", function(){
 });
 
 //Adding search bar for shows
-function searchForShow(shows){
+function searchForShow(showlist){
 const searchEle = document.querySelector("#searching")
 searchEle.addEventListener("input", function searchshows(){
   const searchInput = searchEle.value.toLowerCase();
-  const filteredshows = shows.filter(show => {
+  const filteredshows = showlist.filter(show => {
     if (show.name.toLowerCase().includes(searchInput) || show.summary.toLowerCase().includes(searchInput)|| show.genres.toLowerCase().includes(searchInput)){
-    return show
+    return show;
     }
   })
 document.querySelector("#number").innerText = filteredshows.length;
@@ -123,7 +123,6 @@ function selectAShow() {
     })
     .then((result) => {
       makePageForShow(result);
-      searchForShow(result);
       makePageForEpisodes(result);
       selectMenu(result);
       searchBar(result);
