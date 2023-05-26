@@ -3,19 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TV Show Project | My Name (My GitHub username)</title>
+    <title>TV Show Project | Junita Lama (Junitalama)</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
 
   <body>
-    <div id="root">
+    <div id = "header"></div>
+    <div id="selectBar">
+    <button id = "home">TV SHOWS</button>
+    <select id = "select-show"   class = "form-control" ></select>
+    <select id="selector"   class="form-control"></select>
+    
+    <div><input id="searching" type="text" autocomplete="off" class="input" placeholder="search shows..."/>
+    <label for="searching" class = "display_text">Displaying <span id="number">0</span> show/s </label>
     </div>
+    <div><input id="search" type="text" autocomplete = "off" class="input" placeholder="search episodes..."/>
+    <label for="search" class = "display_text">Displaying <span id="num">0</span> Episode/s </label>
+    </div>
+      
+    <div id = "show_div"></div>
+    <div id = "root">
+    </div>
+    <div id = "footer"></div>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
-    <script src="episodes.js"></script>
-
+    
+  
+     <script src="episodes.js"></script>
+      <script src = "shows.js"></script>
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
+    
   </body>
 </html>

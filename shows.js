@@ -3623,6 +3623,7 @@ function getAllShows() {
         "Music"
       ],
       "status": "Ended",
+      
       "runtime": 25,
       "premiered": "2009-11-28",
       "officialSite": "http://www.nick.com/big-time-rush/",
