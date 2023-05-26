@@ -17,8 +17,6 @@ background-color: var(--black);
 column-gap: 80px;
 border: 2px solid var(--dark-green);
 
-
-
 }
 .first{
   width:400px;
@@ -27,7 +25,6 @@ border: 2px solid var(--dark-green);
   
 }
  .second{
- 
   width: 600px;
   height:400px;
   font-size: 20px; 
@@ -50,6 +47,7 @@ border: 2px solid var(--dark-green);
  .image_1{height: 400px;
   width:400px;
 }
+
 body {
   position: absolute;
   background-image:url("https://mcdn.wallpapersafari.com/medium/26/41/7g30nz.jpg");
@@ -63,6 +61,7 @@ body {
   background-image: url("https://images6.alphacoders.com/846/846724.jpg");
   margin-bottom: 20px;
   border:2px solid var(--dark-green);
+
 }
 .tv_img {
   width:150px;
@@ -77,7 +76,8 @@ body {
   size: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
+  
 }
 .card
 {
